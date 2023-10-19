@@ -1,3 +1,7 @@
+// resource : https://www.youtube.com/watch?v=RebA5J-rlwg&t=623s
+// how to update model : npx prisma migrate dev --create-only
+// apply model : npx prisma migrate dev
+
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
@@ -7,7 +11,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
-
-
-
+model Issue {
+  id          Int      @id @default(autoincrement()) // unique id each row, and function auto increment when adding now row
+  title       String
+  description String
+  status      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

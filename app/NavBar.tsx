@@ -26,6 +26,7 @@ export default function NavBar() {
   ];
 
   //usePathname is a Client Component hook that lets you read the current URL's pathname.
+  // add 'use-client' for client component
   const pathname = usePathname();
   console.log("pathname", pathname);
 
