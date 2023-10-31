@@ -1,6 +1,6 @@
 // resource : https://www.youtube.com/watch?v=RebA5J-rlwg&t=623s
 // how to update model : npx prisma migrate dev --create-only
-// apply model : npx prisma migrate dev
+// apply model : npx prisma migrate dev : keep database sync with prisma sch
 
 datasource db {
   provider = "sqlite"
@@ -11,6 +11,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+//  create a model issue
 model Issue {
   id          Int      @id @default(autoincrement()) // unique id each row, and function auto increment when adding now row
   title       String

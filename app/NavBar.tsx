@@ -3,7 +3,7 @@
 // ----------------------------------------
 // The Link component allows you to navigate between pages without a full page refresh.
 // Prefetching:
-// Next.js automatically prefetches linked pages in the background, improving the use r experience by reducing the delay when navigating to a new page.
+// Next.js automatically prefetches linked pages in the background, improving the user experience by reducing the delay when navigating to a new page.
 
 // using usePathname access brower API convert to client component
 //https://nextjs.org/docs/app/building-your-application/rendering/client-components

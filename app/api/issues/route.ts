@@ -15,6 +15,9 @@ const createIssueSchema = z.object({
   ),
 });
 
+// api route : api/issues : POST method extend NextRequest
+//https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const validation = createIssueSchema.safeParse(body);
@@ -22,7 +25,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(validation.error.errors, { status: 400 });
 
   const newIssue = await prisma.issue.create({
-    data: { title: body.title, description: body.description },
+    data: {
+      title: body.title,
+      description: body.description,
+      status: body.status,
+    },
   });
 
   return NextResponse.json(newIssue, { status: 201 });

@@ -5,10 +5,13 @@
 //lamdang0306 - SumxYzOW0LfWLbaA
 //mongodb+srv://lamdang0306:<password>@cluster0.abccnyu.mongodb.net/?retryWrites=true&w=majority
 
+// import from radix library
+import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,8 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        {children}
+        <Theme>
+          <NavBar />
+          {children}
+        </Theme>
       </body>
     </html>
   );
