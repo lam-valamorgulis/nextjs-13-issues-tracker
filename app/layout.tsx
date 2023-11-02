@@ -11,10 +11,17 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { Theme } from "@radix-ui/themes";
+// ThemePanel will create a panel for easy modify in radix ui
+import { Theme, ThemePanel } from "@radix-ui/themes";
+import "./theme-config.css";
 import NavBar from "./NavBar";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+//https://www.radix-ui.com/themes/docs/theme/typography#with-nextfont
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Issue Tracker",
@@ -28,10 +35,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Theme>
+      <body className={inter.variable}>
+        <Theme appearance="light" accentColor="violet">
+          {/* navbar on top */}
           <NavBar />
-          {children}
+          {/* main part of the app */}
+          <main className="p-5">{children}</main>
+          {/* <ThemePanel /> */}
         </Theme>
       </body>
     </html>

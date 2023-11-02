@@ -1,7 +1,7 @@
 // resource : https://www.youtube.com/watch?v=RebA5J-rlwg&t=623s
 // how to update model : npx prisma migrate dev --create-only
 // apply model : npx prisma migrate dev : keep database sync with prisma sch
-
+//npx prisma studio to show dashboard data
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
