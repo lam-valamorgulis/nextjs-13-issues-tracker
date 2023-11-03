@@ -23,9 +23,9 @@ import ErrorMessage from "@/app/ResuseableComponents/ErrorMessage";
 import Spinner from "@/app/ResuseableComponents/Spinner";
 
 // define a structure of form
-interface IssueForm {
-  title: string;
-  description: string;
+// interface IssueForm {
+/  title: string;
+//  description: string;
   status: string;
 }
 
@@ -43,7 +43,20 @@ export default function NewIssuePage() {
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
 
-  // console.log(errors);
+  // how to handle error form submit ??
+  // error handling normal form submit (post request) :
+  // this form can be valitaion on client side, but with regiter form need to validation form backend
+  // using the the error throw from nextresponse error to inform user
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setSubmitting(true);
+      await axios.post("/api/issues", data);
+      router.push("/issues");
+    } catch (error) {
+      setSubmitting(false);
+      setError("An unexpected error occurred.");
+    }
+  });
 
   return (
     // HOW TO INFORM A ERROR WHEN USER DONT FILL FORM TO SUBMIT
@@ -54,27 +67,7 @@ export default function NewIssuePage() {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        className="space-y-2"
-        // how to handle error form submit ??
-        //error handling normal form submit (post request) :
-        // this form can be valitaion on client side, but with regiter form need to validation form backend
-        // using the the error throw from nextrespose error to inform user
-        onSubmit={handleSubmit(async (data) => {
-          console.log(data);
-          // fetch api try/ catch block code to control error
-          try {
-            setSubmitting(true);
-            await axios.post("/api/issues", data);
-            // router.push("/issues");
-          } catch (error) {
-            console.log(error);
-            setError("An unexpected error occurred.");
-          } finally {
-            setSubmitting(false);
-          }
-        })}
-      >
+      <form className="space-y-2" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input placeholder="Title" {...register("title")} />
         </TextField.Root>
@@ -97,7 +90,8 @@ export default function NewIssuePage() {
             />
           </TextField.Root>
         </VisuallyHidden.Root>
-        {/* react Hook Form has made it easy to integrate with external UI component libraries. If the component doesn't expose input's ref, then you should use the Controller component, which will take care of the registration process. */}
+        {/* react Hook Form has made it easy to integrate with external UI component libraries. 
+If the component doesn't expose input's ref, then you should use the Controller component, which will take care of the registration process. */}
         {/* This library embraces uncontrolled components and
          native HTML inputs. However, 
          it's hard to avoid working with external controlled components 
@@ -129,5 +123,13 @@ export default function NewIssuePage() {
 
 // -Note:
 // -Handling form submit :
-// + handlesubmit: react-hook-form
+// + create form and handlesubmit: react-hook-form
 // + handle error: error fetch API, clientside-validation, avoiding submit 2 times
+// + handle error: error fetch API, clientside-validation, avoiding submit 2 times
+// react hook form :
+// + client validation with intergrate with other libraries 
+// + auto get name and value when submit form
+// One of the key concepts in React Hook Form is to 
+//register your component into the hook. 
+//This will make its value available for both the form validation and submission.
+
