@@ -1,7 +1,20 @@
 import React from "react";
+import { Skeleton } from "@/app/ResuseableComponents";
+import { Flex, Card, Box } from "@radix-ui/themes";
 
 const LoadingIssueDetailPage = () => {
-  return <div>Loading...</div>;
+  return (
+    <Box className="max-w-xl">
+      <Skeleton />
+      <Flex className="space-x-4" my="3">
+        <Skeleton width="5rem" />
+        <Skeleton width="8rem" />
+      </Flex>
+      <Card className="prose" mt="4">
+        <Skeleton count={3} />
+      </Card>
+    </Box>
+  );
 };
 
 export default LoadingIssueDetailPage;

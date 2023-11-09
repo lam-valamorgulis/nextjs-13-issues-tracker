@@ -6,7 +6,8 @@ import { TextField, Button, Callout } from "@radix-ui/themes";
 //https://nextjs.org/docs/app/api-reference/functions/use-router
 import { useRouter } from "next/navigation";
 // simple markdown component
-import SimpleMDE from "react-simplemde-editor";
+// import SimpleMDE from "react-simplemde-editor";
+import dynamic from "next/dynamic";
 import "easymde/dist/easymde.min.css";
 import axios from "axios";
 import { z } from "zod";
@@ -22,11 +23,13 @@ import createIssueSchema from "@/app/schemaValidation";
 import ErrorMessage from "@/app/ResuseableComponents/ErrorMessage";
 import Spinner from "@/app/ResuseableComponents/Spinner";
 
-
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 // define a schemas of form
 type IssueForm = z.infer<typeof createIssueSchema>;
 export default function NewIssuePage() {
-  //The useRouter hook allows you to programmatically change routes 
+  //The useRouter hook allows you to programmatically change routes
   //inside Client Components.
   const router = useRouter();
   const {
