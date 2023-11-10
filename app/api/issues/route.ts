@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { z } from "zod";
 import prisma from "@/prisma/client";
-import createIssueSchema from "@/app/schemaValidation";
+import issueSchema from "@/app/schemaValidation";
 
 // ****** move code to sepreate file that can be re-use for client validation ******
 //  create schemas to validate type
@@ -25,7 +25,7 @@ import createIssueSchema from "@/app/schemaValidation";
 //  POST method
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const validation = createIssueSchema.safeParse(body);
+  const validation = issueSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });
 
