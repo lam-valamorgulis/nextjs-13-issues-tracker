@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 // import { z } from "zod";
 import prisma from "@/prisma/client";
 import issueSchema from "@/app/schemaValidation";
+//secure app
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 // ****** move code to sepreate file that can be re-use for client validation ******
 //  create schemas to validate type
@@ -24,7 +27,11 @@ import issueSchema from "@/app/schemaValidation";
 
 //  POST method
 export async function POST(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
+
   const body = await request.json();
+  // validate shema data from client side
   const validation = issueSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });

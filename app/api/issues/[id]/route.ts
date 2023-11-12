@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import issueSchema from "@/app/schemaValidation";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 //receive 2 parameter , request, from next request and params from url
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } },
 ) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
   // request to get data from body
   const body = await request.json();
   console.log(body);
@@ -38,6 +42,9 @@ export async function DELETE(
 
   { params }: { params: { id: string } },
 ) {
+  // secure api
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) },
   });

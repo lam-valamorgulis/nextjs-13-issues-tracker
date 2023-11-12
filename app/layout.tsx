@@ -16,6 +16,9 @@ import { Theme, ThemePanel, Container } from "@radix-ui/themes";
 import "./theme-config.css";
 import NavBar from "./NavBar";
 
+// session provider
+import AuthProvider from "./auth/Provider";
+
 // const inter = Inter({ subsets: ["latin"] });
 //https://www.radix-ui.com/themes/docs/theme/typography#with-nextfont
 const inter = Inter({
@@ -36,15 +39,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.variable}>
-        <Theme appearance="light" accentColor="violet">
-          {/* navbar on top */}
-          <NavBar />
-          {/* main part of the app */}
-          <main className="p-5">
-            <Container>{children}</Container>
-          </main>
-          {/* <ThemePanel /> */}
-        </Theme>
+        <AuthProvider>
+          <Theme appearance="light" accentColor="violet">
+            {/* navbar on top */}
+            <NavBar />
+            {/* main part of the app */}
+            <main className="p-5">
+              <Container>{children}</Container>
+            </main>
+            {/* <ThemePanel /> */}
+          </Theme>{" "}
+        </AuthProvider>
       </body>
     </html>
   );
