@@ -22,7 +22,7 @@ import classnames from "classnames";
 export default function NavBar() {
   const LINKS = [
     { lable: "Dashboard", href: "/" },
-    { lable: "Issues", href: "/issues" },
+    { lable: "Issues", href: "/issues/list" },
   ];
 
   //usePathname is a Client Component hook that lets you read the current URL's pathname.

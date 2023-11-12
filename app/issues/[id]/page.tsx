@@ -6,9 +6,10 @@ import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import IssueDetails from "./IssueDetails";
 import EditIssueButton from "./EditIssueButton";
+import DeleteIssueButton from "./DeleteIssueButton";
 
 // import { Card, Flex, Heading, Text } from "@radix-ui/themes";
-import { Box, Grid } from "@radix-ui/themes";
+import { Box, Grid, Flex } from "@radix-ui/themes";
 import delay from "delay";
 
 interface Props {
@@ -24,12 +25,15 @@ export default async function IssueDetail({ params }: Props) {
 
   return (
     // phone 1 col, laptop: 2 col
-    <Grid columns={{ initial: "1", md: "2" }} gap="5">
-      <Box>
+    <Grid columns={{ initial: "1", sm: "5" }} gap="5">
+      <Box className="md:col-span-4">
         <IssueDetails issue={issue} />
       </Box>
       <Box>
-        <EditIssueButton issueId={issue.id} />
+        <Flex direction="column" gap="4">
+          <EditIssueButton issueId={issue.id} />
+          <DeleteIssueButton issueId={issue.id} />
+        </Flex>
       </Box>
 
       {/* <Heading>{issue.title}</Heading>

@@ -12,7 +12,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 // ThemePanel will create a panel for easy modify in radix ui
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme, ThemePanel, Container } from "@radix-ui/themes";
 import "./theme-config.css";
 import NavBar from "./NavBar";
 
@@ -40,7 +40,9 @@ export default function RootLayout({
           {/* navbar on top */}
           <NavBar />
           {/* main part of the app */}
-          <main className="p-5">{children}</main>
+          <main className="p-5">
+            <Container>{children}</Container>
+          </main>
           {/* <ThemePanel /> */}
         </Theme>
       </body>

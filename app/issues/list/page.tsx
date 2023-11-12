@@ -1,8 +1,8 @@
 import { Button, Table } from "@radix-ui/themes";
 import React from "react";
 import prisma from "@/prisma/client";
-import IssueStatusBadge from "../ResuseableComponents/IssueStatusBadge";
-import Link from "../ResuseableComponents/Link";
+import IssueStatusBadge from "@/app/ResuseableComponents/IssueStatusBadge";
+import Link from "@/app/ResuseableComponents/Link";
 // npm install delay for delay fetch data on server
 import delay from "delay";
 import IssueActions from "./IssueActions";
@@ -13,9 +13,7 @@ export default async function IssuesPage() {
   return (
     <div>
       <div className="mb-5">
-        <Button>
-          <Link href="/issues/new">New Issue </Link>
-        </Button>
+        <IssueActions />
       </div>
       <Table.Root>
         <Table.Header>

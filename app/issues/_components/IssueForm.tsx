@@ -25,11 +25,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import issueSchema from "@/app/schemaValidation";
 import ErrorMessage from "@/app/ResuseableComponents/ErrorMessage";
 import Spinner from "@/app/ResuseableComponents/Spinner";
-
+import SimpleMDE from "react-simplemde-editor";
 // only import in client site
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
+// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+//   ssr: false,
+// });
 // define a schemas of form
 type IssueForm = z.infer<typeof issueSchema>;
 
@@ -58,7 +58,7 @@ export default function IssueForm({ issue }: { issue?: Issue }) {
       setSubmitting(true);
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
       else await axios.post("/api/issues", data);
-      router.push("/issues");
+      router.push("/issues/list");
       router.refresh();
     } catch (error) {
       setSubmitting(false);
