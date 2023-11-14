@@ -12,7 +12,7 @@ export async function PATCH(
   if (!session) return NextResponse.json({}, { status: 401 });
   // request to get data from body
   const body = await request.json();
-  console.log(body);
+  //   console.log(body);
   //validation from getting data if it match the type of schemas
   const validation = issueSchema.safeParse(body);
   // 1 check validation, 2 check if validate of param
