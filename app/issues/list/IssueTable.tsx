@@ -6,6 +6,7 @@ import IssueStatusBadge from "@/app/ResuseableComponents/IssueStatusBadge";
 import Link from "@/app/ResuseableComponents/Link";
 import NextLink from "next/link";
 import { Issue } from "@prisma/client";
+
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 
 interface Props {
