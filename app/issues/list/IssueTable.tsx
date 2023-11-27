@@ -7,7 +7,7 @@ import Link from "@/app/ResuseableComponents/Link";
 import NextLink from "next/link";
 import { Issue } from "@prisma/client";
 
-// import { ArrowUpIcon } from "@radix-ui/react-icons";
+import { ArrowUpIcon } from "@radix-ui/react-icons";
 
 interface Props {
   searchParams: { status: "OPEN" | "IN_PROGRESS" | "CLOSED" };
@@ -30,9 +30,9 @@ const IssueTable = ({ searchParams, issues }: Props) => {
                 }}
               >
                 Issue
-                {/* {"title" === searchParams.orderBy && (
+                {"title" === searchParams.orderBy && (
                   <ArrowUpIcon className="inline" />
-                )} */}
+                )}
               </NextLink>
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
@@ -42,9 +42,9 @@ const IssueTable = ({ searchParams, issues }: Props) => {
                 }}
               >
                 Status
-                {/* {"status" === searchParams.orderBy && (
+                {"status" === searchParams.orderBy && (
                   <ArrowUpIcon className="inline" />
-                )} */}
+                )}
               </NextLink>
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
@@ -54,9 +54,9 @@ const IssueTable = ({ searchParams, issues }: Props) => {
                 }}
               >
                 Created
-                {/* {"createdAt" === searchParams.orderBy && (
+                {"createdAt" === searchParams.orderBy && (
                   <ArrowUpIcon className="inline" />
-                )} */}
+                )}
               </NextLink>
             </Table.ColumnHeaderCell>
           </Table.Row>
